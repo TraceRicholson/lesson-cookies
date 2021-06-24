@@ -14,14 +14,26 @@ app.get('/', (_, res) => res.send('Hello World!'));
 
 //todo: Return an array containing the cookies from the request. - hint: Object.entries may come in handy.
 app.get('/api/cookies', (request, response) => {
+    // console.log('Cookies: ', request.cookies)
+    response.send([request.cookies])
+    response.end()
 });
 
 //todo: Create a cookie with a random value.
 app.post('/api/cookies/random', (request, response) => {
+    response.cookie('random', Math.random())
+    response.end()
+    // document.cookie = "username=John Doe"
+    console.log('add', "You have added a cookie")
+
 });
 
 //todo: Update the username cookie.
 app.put('/api/cookies/username', (request, response) => {
+    const updatedUsername = "This username has been updated!"
+    response.cookie('username', updatedUsername)
+    response.end()
+    console.log('update', "has run")
 });
 
 //example: This sets a cookie, used in the HeaderUserInfo.jsx file.
@@ -33,6 +45,9 @@ app.get('/api/cookies/username', (_, response) => {
 
 //todo: Delete the username cookie.
 app.delete('/api/cookies/username', (_, response) => {
+    response.clearCookie('username', { path: '/api/cookies/username'})
+    response.end()
+    console.log('delete', "This cookie has been cleared")
 });
 
 const port = 5000;
