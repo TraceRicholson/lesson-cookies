@@ -45,7 +45,7 @@ app.get('/api/cookies/username', (_, response) => {
 
 //todo: Delete the username cookie.
 app.delete('/api/cookies/username', (_, response) => {
-    response.clearCookie('username', { path: '/api/cookies/username'})
+    response.clearCookie('username', { path: '/'})
     response.end()
     console.log('delete', "This cookie has been cleared")
 });
